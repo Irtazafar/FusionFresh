@@ -3619,7 +3619,7 @@ namespace Fusion.CodeGen {
     }
 
     public override ILPostProcessResult Process(ICompiledAssembly compiledAssembly) {
-      
+            return null;
     }
 
     public override bool WillProcess(ICompiledAssembly compiledAssembly) {

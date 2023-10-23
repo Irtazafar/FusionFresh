@@ -1,5 +1,6 @@
 using Fusion;
 using Fusion.Sockets;
+using StarterAssets;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,6 +57,7 @@ namespace IrtazaGeni.FusionFresh
             Debug.Log("OnConnectedToServer");
             NetworkObject playerObject = runner.Spawn(playerPrefab,Vector3.zero);
             runner.SetPlayerObject(runner.LocalPlayer, playerObject);
+            UICanvasControllerInput.instance.starterAssetsInputs=playerObject.GetComponent<StarterAssetsInputs>();
         }
 
         public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)

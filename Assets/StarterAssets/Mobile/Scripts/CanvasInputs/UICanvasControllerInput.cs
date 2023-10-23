@@ -7,7 +7,14 @@ namespace StarterAssets
 
         [Header("Output")]
         public StarterAssetsInputs starterAssetsInputs;
-
+        public static UICanvasControllerInput instance;
+        private void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this;
+            }
+        }
         public void VirtualMoveInput(Vector2 virtualMoveDirection)
         {
             starterAssetsInputs.MoveInput(virtualMoveDirection);

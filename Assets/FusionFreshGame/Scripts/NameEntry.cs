@@ -1,4 +1,5 @@
 using IrtazaGeni.FusionFresh;
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,10 +21,15 @@ public class NameEntry : MonoBehaviour
     [SerializeField]
     GameObject canvas;
 
+    [SerializeField]
+    GameObject UiCanvas;
+
     public void SubmitName()
     {
         FusionConnection.instance.ConnectToRunner(nameInputField.text, roomInputField.text);
         canvas.SetActive(false);
+        UiCanvas.SetActive(true);
+       
     }
     public void ActivateButton ()
     {
