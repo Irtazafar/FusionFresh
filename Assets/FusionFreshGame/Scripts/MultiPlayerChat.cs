@@ -14,7 +14,10 @@ public class MultiPlayerChat : NetworkBehaviour
     public GameObject chatEntryCanvas;
     public TMP_InputField _Input;
     public TextMeshProUGUI chatbody;
+    public GameObject chatDisplay; 
 
+    [HideInInspector]
+    public static TextMeshProUGUI MyChatBody;
 
     [Header("Action Reference")]
      public InputActionReference startChat;
@@ -30,7 +33,7 @@ public class MultiPlayerChat : NetworkBehaviour
     protected static void LastPublicChatChanged(Changed<MultiPlayerChat> change)
     {
   
-        change.Behaviour.chatbody.text += "\n" + change.Behaviour.thisPlayerName + ": "+ change.Behaviour.LastPublicChat.ToString();
+        MyChatBody.text += "\n" + change.Behaviour.thisPlayerName + ": "+ change.Behaviour.LastPublicChat.ToString();
     }
 
     protected static void LastPrivateChatChanged(Changed<MultiPlayerChat> change)
@@ -43,8 +46,10 @@ public class MultiPlayerChat : NetworkBehaviour
         {
             startChat.action.performed += StartChat;
             sendChat.action.performed += SendChat;
-            thisPlayerName = transform.root.GetComponent<PlayerStats>().PlayerName.ToString();
+            chatDisplay.SetActive(true);
+            MyChatBody = chatbody;
         }
+        thisPlayerName = transform.root.GetComponent<PlayerStats>().PlayerName.ToString();
     }
 
     private void SendChat(InputAction.CallbackContext context)
@@ -56,6 +61,7 @@ public class MultiPlayerChat : NetworkBehaviour
     private void StartChat(InputAction.CallbackContext context)
     {
         chatEntryCanvas.SetActive(true);
+        _Input.Select();
     }
 
 }
