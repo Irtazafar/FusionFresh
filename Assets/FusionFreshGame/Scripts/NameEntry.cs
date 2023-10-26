@@ -24,12 +24,13 @@ public class NameEntry : MonoBehaviour
     [SerializeField]
     GameObject UiCanvas;
 
+
     public void SubmitName()
     {
         FusionConnection.instance.ConnectToRunner(nameInputField.text, roomInputField.text);
         canvas.SetActive(false);
         UiCanvas.SetActive(true);
-       
+      
     }
     public void ActivateButton ()
     {
